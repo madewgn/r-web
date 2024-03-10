@@ -1,6 +1,11 @@
-import { NextRequest } from "next/server";
-import { updateSession } from "@/lib/ses";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { updateSession } from '@/lib/ses';
 
-export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+// Middleware untuk memperbarui sesi pengguna
+export async function middleware(req: NextApiRequest, res: NextApiResponse) {
+    // Panggil fungsi updateSession dan tunggu hasilnya
+    const response = await updateSession(req);
+    
+    // Kembalikan respons dari middleware (jika diperlukan)
+    return response;
 }

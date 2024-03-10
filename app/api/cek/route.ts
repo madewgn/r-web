@@ -1,12 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { redirect } from 'next/navigation'
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { Deta } from "deta";
 import { getSession, login, logout } from "@/lib/ses";
+import { middleware } from '@/middleware'; // Import middleware yang telah Anda buat
+
 const deta = Deta("c0xauewxmm6_MZAwmovmUXAEUK4CBdyFqqvCCxf5CH6Z");
 const db = deta.Base("vpn");
 
 
+
 export async function GET(request: NextApiRequest) {
+  // await middleware(request);
   const session = await getSession()
   console.log(session)
   
@@ -16,29 +19,3 @@ export async function GET(request: NextApiRequest) {
     status: 200,
   });
 }
-
-
-// export async function POST(request: Request) {
-//   const body = await request.text(); // Read the raw text of the request body
-
-//   // Parse the raw text body into a URLSearchParams object
-//   const params = new URLSearchParams(body);
-
-//   // Get username and password from the parsed body
-//   const username = params.get('username');
-//   const password = params.get('password');
-//   const sta = await cek_login(username, password);
-//   if (sta == true) {
-//     return new Response(redirect('/dashboard'), {
-//       status: 200,
-//     });
-//   }
-//   else {
-//     return new Response(redirect('/login'), {
-//       status: 200,
-//     });
-//   }
-
-
-
-// }

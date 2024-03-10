@@ -34,7 +34,7 @@ async function getAllServ() {
 
 
 
-export async function Dashboard({ saldo }: DashboardProps) {
+export async function Dashboard({ saldo }) {
   try {
 
     // console.log(data)
